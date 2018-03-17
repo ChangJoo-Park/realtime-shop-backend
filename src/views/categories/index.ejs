@@ -25,7 +25,13 @@
               <td>
                 <a href="/admin/categories/<%= c.id %>" role="button" class="btn btn-light btn-xs">Show</a>
                 <a href="/admin/categories/<%= c.id %>/edit" role="button" class="btn btn-success btn-xs">Edit</a>
-                <button class="btn btn-danger btn-xs">Delete</button>
+                <form
+                  action="/admin/categories/<%= c.id %>?_method=DELETE"
+                  method="post"
+                  style="display: inline-block;"
+                >
+                  <button type="submit" class="btn btn-danger btn-xs">Delete</button>
+                </form>
               </td>
             </tr>
           <% }) %>

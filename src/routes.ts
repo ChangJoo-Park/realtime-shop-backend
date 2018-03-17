@@ -59,7 +59,7 @@ export const ViewRoutes = [
     },
     {
         path: "/admin/categories/:id",
-        method: "post",
+        method: "put",
         action: category.update
     },
     {

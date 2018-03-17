@@ -4,6 +4,7 @@ import {Request, Response} from "express";
 import * as express from "express";
 import * as expressLayout from "express-ejs-layouts";
 import * as bodyParser from "body-parser";
+import * as methodOverride from "method-override";
 import * as path from 'path'
 import {AppRoutes, ViewRoutes} from "./routes";
 
@@ -19,6 +20,7 @@ createConnection().then(async connection => {
     app.set('views', path.join(__dirname, '/views'))
     app.set('view engine', 'ejs');
     app.use(expressLayout);
+    app.use(methodOverride('_method'))
     app.use(bodyParser.urlencoded())
     app.use(bodyParser.raw());
     app.use(bodyParser.text());

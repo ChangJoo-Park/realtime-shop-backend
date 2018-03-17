@@ -1,8 +1,7 @@
 <% style = isUpdate ? 'success' : 'primary' %>
 <% submitText = isUpdate ? 'Update' : 'Submit' %>
 <% if (isUpdate) { %>
-<form action="/admin/categories/<%= category.id %>" method="post">
-  <input type="hidden" name="_method" value="PUT">
+<form action="/admin/categories/<%= category.id %>?_method=PUT" method="post">
 <% } else { %>
 <form action="/admin/categories" method="post">
 <% } %>

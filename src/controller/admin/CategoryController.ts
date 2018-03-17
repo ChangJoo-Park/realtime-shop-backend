@@ -39,7 +39,7 @@ export async function create(request: Request, response: Response) {
     category.description = description
     await category.save()
 
-    response.redirect('categories')
+    response.redirect('/admin/categories')
 }
 
 export async function edit(request: Request, response: Response) {
@@ -63,13 +63,8 @@ export async function update(request: Request, response: Response) {
 }
 
 export async function destroy(request: Request, response: Response) {
-    // get a post repository to perform operations with post
-    const categoryRepository = getManager().getRepository(Category);
+    const category = await Category.findOneById(request.params.id)
+    await category.remove()
 
-    // load a post by a given post id
-    const categories = await categoryRepository.find();
-    response.render('categories/edit', {
-        title: 'Categories',
-        page_name: 'categories'
-    })
+    response.redirect('/admin/categories')
 }
