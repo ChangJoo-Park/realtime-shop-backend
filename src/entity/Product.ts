@@ -2,7 +2,7 @@ import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from "typ
 import {Category} from "./Category";
 
 @Entity()
-export class Post {
+export class Product {
 
     @PrimaryGeneratedColumn()
     id: number;

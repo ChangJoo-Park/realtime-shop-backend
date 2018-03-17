@@ -1,17 +1,17 @@
 import {Request, Response} from "express";
 import {getManager} from "typeorm";
-import {Post} from "../entity/Post";
+import {Product} from "../entity/Product";
 
 /**
  * Loads all posts from the database.
  */
-export async function postGetAllAction(request: Request, response: Response) {
+export async function productGetAllAction(request: Request, response: Response) {
 
     // get a post repository to perform operations with post
-    const postRepository = getManager().getRepository(Post);
+    const productRepository = getManager().getRepository(Product);
 
     // load a post by a given post id
-    const posts = await postRepository.find();
+    const posts = await productRepository.find();
 
     // return loaded posts
     response.send(posts);
