@@ -28,18 +28,6 @@ h6 {
   font-family: "system";
 }
 
-a,
-a:visited {
-  color: #7376df;
-}
-
-a:hover,
-a:focus,
-a:active {
-  color: #6365d2;
-  text-decoration: none;
-}
-
 .nav-pills .nav-item.show .nav-link,
 .nav-pills .nav-link.active {
   background-color: #7376df;
@@ -47,13 +35,13 @@ a:active {
 
 h1 {
   font-family: "system";
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: 600;
 }
 
 h2 {
   font-family: "system";
-  font-size: 2.4rem;
+  font-size: 2.0rem;
   font-weight: 500;
 }
 

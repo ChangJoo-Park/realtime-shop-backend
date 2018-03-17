@@ -6,51 +6,60 @@ import {getManager} from "typeorm";
  * Loads all posts from the database.
  */
 export async function index(request: Request, response: Response) {
-    // get a post repository to perform operations with post
-    const categoryRepository = getManager().getRepository(Category);
+    const categories = await Category.find();
 
-    // load a post by a given post id
-    const categories = await categoryRepository.find();
     response.render('categories/index', {
-        title: 'Categories',
-        page_name: 'categories'
+        title: 'All Categories',
+        page_name: 'categories',
+        categories: categories
     })
 }
 
 export async function show(request: Request, response: Response) {
-    // get a post repository to perform operations with post
-    const categoryRepository = getManager().getRepository(Category);
+    const category = await Category.findOneById(request.params.id)
 
-    // load a post by a given post id
-    const categories = await categoryRepository.find();
     response.render('categories/show', {
-        title: 'Categories',
-        page_name: 'Category - Show'
+        title: 'Category',
+        page_name: 'categories',
+        category
+    })
+}
+
+export async function newCategory(request: Request, response: Response) {
+  response.render('categories/new', {
+      title: 'New Category', page_name: 'categories',
+      category: new Category()
     })
 }
 
 export async function create(request: Request, response: Response) {
-    // get a post repository to perform operations with post
-    const categoryRepository = getManager().getRepository(Category);
+    const { name, description } = request.body
+    const category = new Category()
+    category.name = name
+    category.description = description
+    await category.save()
 
-    // load a post by a given post id
-    const categories = await categoryRepository.find();
-    response.render('categories/new', {
-        title: 'Categories',
-        page_name: 'Category - New'
-    })
+    response.redirect('categories')
 }
 
 export async function edit(request: Request, response: Response) {
-    // get a post repository to perform operations with post
-    const categoryRepository = getManager().getRepository(Category);
+    const category = await Category.findOneById(request.params.id)
 
-    // load a post by a given post id
-    const categories = await categoryRepository.find();
     response.render('categories/edit', {
-        title: 'Categories',
-        page_name: 'Category - Edit'
+        title: 'Edit Category',
+        page_name: 'categories',
+        category
     })
+}
+
+export async function update(request: Request, response: Response) {
+    console.log('update called')
+    const category = await Category.findOneById(request.params.id)
+    const { name, description } = request.body
+    category.name = name
+    category.description = description
+    await category.save()
+    response.redirect(`/admin/categories/${category.id}`)
 }
 
 export async function destroy(request: Request, response: Response) {
@@ -61,6 +70,6 @@ export async function destroy(request: Request, response: Response) {
     const categories = await categoryRepository.find();
     response.render('categories/edit', {
         title: 'Categories',
-        page_name: 'Category - Edit'
+        page_name: 'categories'
     })
 }

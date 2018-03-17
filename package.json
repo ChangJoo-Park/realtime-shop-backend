@@ -41,6 +41,6 @@
   },
   "scripts": {
     "start": "tsc && node src/index.js",
-    "dev": "tsc --watch | nodemon --delay 10 src/index.js"
+    "dev": "tsc --watch | nodemon --delay 2.5 src/index.js"
   }
 }

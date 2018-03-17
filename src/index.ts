@@ -19,6 +19,9 @@ createConnection().then(async connection => {
     app.set('views', path.join(__dirname, '/views'))
     app.set('view engine', 'ejs');
     app.use(expressLayout);
+    app.use(bodyParser.urlencoded())
+    app.use(bodyParser.raw());
+    app.use(bodyParser.text());
     app.use(bodyParser.json());
 
     // register all application routes

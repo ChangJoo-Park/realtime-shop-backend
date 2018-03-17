@@ -1,0 +1,36 @@
+<% style = isUpdate ? 'success' : 'primary' %>
+<% submitText = isUpdate ? 'Update' : 'Submit' %>
+<% if (isUpdate) { %>
+<form action="/admin/categories/<%= category.id %>" method="post">
+  <input type="hidden" name="_method" value="PUT">
+<% } else { %>
+<form action="/admin/categories" method="post">
+<% } %>
+  <div class="form-group">
+    <label for="category-form-name">Name</label>
+    <input
+      id="category-form-name"
+      type="text"
+      class="form-control"
+      placeholder="Enter Category Name"
+      name="name"
+      minLength=2
+      maxLength=10
+      required
+      value= "<%= category.name %>"
+    >
+  </div>
+  <div class="form-group">
+    <label for="category-form-description">Description</label>
+    <textarea
+      id="category-form-description"
+      name="description"
+      class="form-control"
+    ><%= category.description %></textarea>
+  </div>
+  <input
+    type="submit"
+    class="btn btn-<%= style %>"
+    value="<%= submitText %>">
+  <a href="/admin/categories" class="btn btn-link">Back</a>
+</form>
