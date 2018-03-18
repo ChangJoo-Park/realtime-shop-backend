@@ -11,11 +11,12 @@ export class Product extends BaseEntity {
     title: string;
 
     @Column("text")
-    text: string;
+    description: string;
 
     @ManyToMany(type => Category, {
         cascadeInsert: true
     })
+
     @JoinTable()
     categories: Category[];
 
