@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-12 text-right">
+    <a href="/admin/customers/new" class="btn btn-primary btn-xs" role="button">New</a>
+  </div>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <thead class="thead-default">
+        <tr>
+          <th>ID</th>
+          <th>UserName</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+          <% customers.forEach(c => { %>
+            <tr>
+              <td scope="row"><%= c.id %></td>
+              <td><%= c.username %></td>
+              <td><%= c.email %></td>
+              <td>
+                <a href="/admin/customers/<%= c.id %>" role="button" class="btn btn-light btn-xs">Show</a>
+                <a href="/admin/customers/<%= c.id %>/edit" role="button" class="btn btn-success btn-xs">Edit</a>
+                <form
+                  action="/admin/customers/<%= c.id %>?_method=DELETE"
+                  method="post"
+                  style="display: inline-block;"
+                >
+                  <button type="submit" class="btn btn-danger btn-xs">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+    </table>
+  </div>
+</div>

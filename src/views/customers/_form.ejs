@@ -1,0 +1,39 @@
+<% style = isUpdate ? 'success' : 'primary' %>
+<% submitText = isUpdate ? 'Update' : 'Submit' %>
+
+<% if (isUpdate) { %>
+<form action="/admin/customers/<%= customer.id %>?_method=PUT" method="post">
+<% } else { %>
+<form action="/admin/customers" method="post">
+<% } %>
+  <div class="form-group">
+    <label for="customer-form-username">UserName</label>
+    <input
+      id="customer-form-username"
+      type="text"
+      class="form-control"
+      placeholder="Enter Product Name"
+      name="username"
+      minLength=2
+      maxLength=20
+      required
+      value= "<%= customer.username %>"
+    >
+  </div>
+  <div class="form-group">
+    <label for="customer-form-email">Email</label>
+    <input
+      id="customer-form-email"
+      type="email"
+      class="form-control"
+      name="email"
+      required
+      value= "<%= customer.email %>"
+    >
+    </div>
+  <input
+    type="submit"
+    class="btn btn-<%= style %>"
+    value="<%= submitText %>">
+  <a href="/admin/customers" class="btn btn-link">Back</a>
+</form>
