@@ -8,24 +8,11 @@
   </a>
 
   <ul class="nav nav-pills flex-column sidebar-nav">
-    <li class="nav-item">
-      <a
-        class="nav-link <%- page_name === 'dashboard' ? 'active' : '' %>"
-        href="/admin"
-      >
-        <em class="fa fa-chart-line"></em> Dashboard <span class="sr-only">(current)</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link <%- page_name === 'categories' ? 'active' : '' %>" href="/admin/categories">
-        <em class="fa fa-tags"></em> Categories
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link <%- page_name === 'products' ? 'active' : '' %>" href="/admin/products">
-        <em class="fa fa-cube"></em> Products
-      </a>
-    </li>
+    <%- include('_nav-item.ejs', { page: 'dashboard', url: '/admin', title: 'Dashboard', icon: 'fa-chart-line'}) %>
+    <%- include('_nav-item.ejs', { page: 'categories', url: '/admin/categories', title: 'Categories', icon: 'fa-tags'}) %>
+    <%- include('_nav-item.ejs', { page: 'products', url: '/admin/products', title: 'Products', icon: 'fa-cube'}) %>
+    <%- include('_nav-item.ejs', { page: 'customers', url: '/admin/customers', title: 'Customers', icon: 'fa-address-book'}) %>
+    <%- include('_nav-item.ejs', { page: 'orders', url: '/admin/orders', title: 'Orders', icon: 'fa-truck'}) %>
   </ul>
   <a href="#" class="logout-button"><em class="fa fa-power-off"></em> Signout</a>
 </nav>
