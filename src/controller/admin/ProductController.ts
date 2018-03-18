@@ -6,15 +6,11 @@ import {Product} from "../../entity/Product";
  * Loads all posts from the database.
  */
 export async function index(request: Request, response: Response) {
+  console.log('products')
     // get a post repository to perform operations with post
-    const productRepository = getManager().getRepository(Product);
-
-    // load a post by a given post id
-    const posts = await productRepository.find();
     response.render('products/index', {
       title: 'Products',
-      page_name: 'products',
-      data: posts
+      page_name: 'products'
     })
 }
 
