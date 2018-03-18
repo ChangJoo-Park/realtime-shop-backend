@@ -1,0 +1,36 @@
+<% style = isUpdate ? 'success' : 'primary' %>
+<% submitText = isUpdate ? 'Update' : 'Submit' %>
+
+<% if (isUpdate) { %>
+<form action="/admin/orders/<%= order.id %>?_method=PUT" method="post">
+<% } else { %>
+<form action="/admin/orders" method="post">
+<% } %>
+  <div class="form-group">
+    <label for="order-form-name">Name</label>
+    <input
+      id="order-form-name"
+      type="text"
+      class="form-control"
+      placeholder="Enter Order Name"
+      name="name"
+      minLength=2
+      maxLength=20
+      required
+      value= "<%= order.name %>"
+    >
+  </div>
+  <div class="form-group">
+    <label for="order-form-description">Description</label>
+    <textarea
+      id="order-form-description"
+      name="description"
+      class="form-control"
+    ><%= order.description %></textarea>
+  </div>
+  <input
+    type="submit"
+    class="btn btn-<%= style %>"
+    value="<%= submitText %>">
+  <a href="/admin/orders" class="btn btn-link">Back</a>
+</form>

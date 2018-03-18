@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-12 text-right">
+    <a href="/admin/orders/new" class="btn btn-primary btn-xs" role="button">New</a>
+  </div>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <thead class="thead-default">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Published</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+          <% orders.forEach(o => { %>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <a href="/admin/orders/<%= o.id %>" role="button" class="btn btn-light btn-xs">Show</a>
+                <a href="/admin/orders/<%= o.id %>/edit" role="button" class="btn btn-success btn-xs">Edit</a>
+                <form
+                  action="/admin/orders/<%= o.id %>?_method=DELETE"
+                  method="post"
+                  style="display: inline-block;"
+                >
+                  <button type="submit" class="btn btn-danger btn-xs">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+    </table>
+  </div>
+</div>
