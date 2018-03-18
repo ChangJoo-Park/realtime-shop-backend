@@ -1,5 +1,5 @@
-import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from "typeorm";
-import {Category} from "./Category";
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from "typeorm";
+import { Category } from "./Category";
 
 @Entity()
 export class Product extends BaseEntity {
@@ -8,7 +8,7 @@ export class Product extends BaseEntity {
     id: number;
 
     @Column()
-    title: string;
+    name: string;
 
     @Column("text")
     description: string;

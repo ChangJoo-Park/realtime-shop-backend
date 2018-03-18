@@ -53,7 +53,6 @@ export async function edit(request: Request, response: Response) {
 }
 
 export async function update(request: Request, response: Response) {
-    console.log('update called')
     const category = await Category.findOneById(request.params.id)
     const { name, description } = request.body
     category.name = name
