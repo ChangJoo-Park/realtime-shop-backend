@@ -5,7 +5,16 @@
 </div>
 <br>
 
-<h2><%= product.name %></h2>
+<h2>
+  <%= product.name %>
+  <% product.categories.forEach(c => { %>
+    <a
+      href="/admin/categories/<%= c.id %>"
+      class="badge badge-primary"
+    >
+      <%= c.name %>
+    </a>
+  <% }) %>
+</h2>
 <p><%= product.description %></p>
-
 <h3>Products</h3>

@@ -1,10 +1,7 @@
 import { Category } from './../../entity/Category';
-import {Request, Response} from "express";
-import {getManager} from "typeorm";
+import { Request, Response } from "express";
+import { getManager } from "typeorm";
 
-/**
- * Loads all posts from the database.
- */
 export async function index(request: Request, response: Response) {
     const categories = await Category.find();
 
@@ -26,9 +23,9 @@ export async function show(request: Request, response: Response) {
 }
 
 export async function newCategory(request: Request, response: Response) {
-  response.render('categories/new', {
-      title: 'New Category', page_name: 'categories',
-      category: new Category()
+    response.render('categories/new', {
+        title: 'New Category', page_name: 'categories',
+        category: new Category()
     })
 }
 

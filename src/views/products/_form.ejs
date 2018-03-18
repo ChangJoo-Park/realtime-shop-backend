@@ -1,5 +1,6 @@
 <% style = isUpdate ? 'success' : 'primary' %>
 <% submitText = isUpdate ? 'Update' : 'Submit' %>
+
 <% if (isUpdate) { %>
 <form action="/admin/products/<%= product.id %>?_method=PUT" method="post">
 <% } else { %>
@@ -26,6 +27,17 @@
       name="description"
       class="form-control"
     ><%= product.description %></textarea>
+  </div>
+  <!-- Checkboxes -->
+  <div class="form-group">
+    <label for="product-form-categories">Categories</label>
+    <select id="product-form-categories" multiple name="categories" class="form-control">
+    <% categories.forEach(c => { %>
+      <option value="<%= c.id %>">
+        <%= c.name %>
+      </option>
+    <% }) %>
+    </select>
   </div>
   <input
     type="submit"
