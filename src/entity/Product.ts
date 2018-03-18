@@ -1,5 +1,6 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from "typeorm";
 import { Category } from "./Category";
+import { Order } from "./Order";
 
 @Entity()
 export class Product extends BaseEntity {
@@ -24,8 +25,9 @@ export class Product extends BaseEntity {
     @ManyToMany(type => Category, category => category.products, {
         eager: true
     })
-
     @JoinTable()
     categories: Category[];
 
+    @ManyToMany(type => Order, order => order.products)
+    orders: Order[];
 }
