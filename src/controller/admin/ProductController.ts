@@ -43,7 +43,6 @@ export async function edit(request: Request, response: Response) {
   const product = await Product.findOneById(request.params.id)
   const categories = await Category.find({ select: ['id', 'name'] })
 
-
   response.render('products/edit', {
     title: 'Update Product',
     page_name,
@@ -53,10 +52,11 @@ export async function edit(request: Request, response: Response) {
 }
 
 export async function create(request: Request, response: Response) {
-  const { name, description, categories } = request.body
+  const { name, description, categories, published } = request.body
   const product = new Product()
   product.name = name
   product.description = description
+  product.published = published
   product.categories = await Category.findByIds(getCategoryArray(categories))
   await product.save()
 
@@ -65,9 +65,10 @@ export async function create(request: Request, response: Response) {
 
 export async function update(request: Request, response: Response) {
   const product = await Product.findOneById(request.params.id)
-  const { name, description, categories } = request.body
+  const { name, description, categories, published } = request.body
   product.name = name
   product.description = description
+  product.published = published === 'on' ? true : false
   product.categories = await Category.findByIds(getCategoryArray(categories))
   await product.save()
 

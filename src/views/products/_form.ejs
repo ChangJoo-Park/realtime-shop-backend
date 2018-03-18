@@ -39,6 +39,11 @@
     <% }) %>
     </select>
   </div>
+  <div class="form-check">
+    <% var checked = product.published ? 'checked' : '' %>
+    <input id="product-form-published" type="checkbox" name="published" <%= checked %>>
+    <label for="product-form-published">Publish</label>
+  </div>
   <input
     type="submit"
     class="btn btn-<%= style %>"

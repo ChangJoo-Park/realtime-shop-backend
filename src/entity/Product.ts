@@ -13,6 +13,14 @@ export class Product extends BaseEntity {
     @Column("text")
     description: string;
 
+    @Column({
+        nullable: false,
+        type: Boolean,
+        default: false
+    })
+    published: boolean;
+
+
     @ManyToMany(type => Category, category => category.products, {
         eager: true
     })

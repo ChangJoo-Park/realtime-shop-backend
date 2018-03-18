@@ -10,10 +10,11 @@
     <table class="table table-striped">
       <thead class="thead-default">
         <tr>
-          <th style="width: 5%">ID</th>
-          <th style="width: 25%">Name</th>
-          <th style="width: 40%">Description</th>
-          <th style="width: 30%">Actions</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Published</th>
+          <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@
               <td scope="row"><%= p.id %></td>
               <td><%= p.name %></td>
               <td><%= p.description %></td>
+              <td><%= p.published %></td>
               <td>
                 <a href="/admin/products/<%= p.id %>" role="button" class="btn btn-light btn-xs">Show</a>
                 <a href="/admin/products/<%= p.id %>/edit" role="button" class="btn btn-success btn-xs">Edit</a>
