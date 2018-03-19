@@ -11,18 +11,19 @@
       <thead class="thead-default">
         <tr>
           <th>ID</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Published</th>
+          <th>Customer</th>
+          <th>Products</th>
           <th>Actions</th>
         </tr>
         </thead>
         <tbody>
           <% orders.forEach(o => { %>
             <tr>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td><%= o.id %></td>
+              <td><%= o.customer.username %></td>
+              <td>
+                <%= o.products.map(p => p.name).join(', ') %>
+              </td>
               <td>
                 <a href="/admin/orders/<%= o.id %>" role="button" class="btn btn-light btn-xs">Show</a>
                 <a href="/admin/orders/<%= o.id %>/edit" role="button" class="btn btn-success btn-xs">Edit</a>
