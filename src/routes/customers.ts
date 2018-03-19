@@ -9,7 +9,7 @@ export const customers = [
   {
     path: "/admin/customers/new",
     method: "get",
-    action: customer.newProduct
+    action: customer.newCustomer
   },
   {
     path: "/admin/customers",

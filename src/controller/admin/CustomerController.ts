@@ -25,9 +25,8 @@ export async function show(request: Request, response: Response) {
   })
 }
 
-export async function newProduct(request: Request, response: Response) {
+export async function newCustomer(request: Request, response: Response) {
   const customer = new Customer()
-
   response.render('customers/new', {
     title: 'New Customer',
     page_name,
@@ -46,9 +45,13 @@ export async function edit(request: Request, response: Response) {
 }
 
 export async function create(request: Request, response: Response) {
-  const { name, description, categories, published } = request.body
+  const { username, email } = request.body
+  console.log('username => ', username, ' email => ', email)
   const customer = new Customer()
+  customer.username = username
+  customer.email = email
   await customer.save()
+  console.log('customer => ', customer)
 
   response.redirect('/admin/customers')
 }
