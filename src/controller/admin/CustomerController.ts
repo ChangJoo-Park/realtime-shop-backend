@@ -16,8 +16,7 @@ export async function index(request: Request, response: Response) {
 }
 
 export async function show(request: Request, response: Response) {
-  const customer = await Customer.findOneById(request.params.id)
-
+  const customer = await Customer.findOneById(request.params.id, { relations: ['orders', 'orders.products'] })
   response.render('customers/show', {
     title: 'Customer',
     page_name,
