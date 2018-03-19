@@ -1,12 +1,12 @@
 {
-  "name": "typeorm-typescript-express-example",
-  "version": "0.0.1",
-  "description": "Example how to use Express and TypeORM with TypeScript.",
+  "name": "order-dashboard",
+  "version": "0.0.5",
+  "description": "Small shop admin using express MVC",
   "license": "MIT",
   "readmeFilename": "README.md",
   "author": {
-    "name": "Umed Khudoiberdiev",
-    "email": "pleerock.me@gmail.com"
+    "name": "ChangJoo Park",
+    "email": "pcjpcj2@gmail.com"
   },
   "repository": {
     "type": "git",
