@@ -33,7 +33,10 @@
     <label for="product-form-categories">Categories</label>
     <select id="product-form-categories" multiple name="categories" class="form-control">
     <% categories.forEach(c => { %>
-      <%= selected = product.categories.findIndex(p => p.id === c.id) >= 0 ? "selected" : '' %>
+      <% selected = '' %>
+      <% if(isUpdate) { %>
+        <% selected = product.categories.findIndex(p => p.id === c.id) >= 0 ? "selected" : '' %>
+      <% } %>
       <option value="<%= c.id %>" <%= selected %>>
         <%= c.name %>
       </option>
