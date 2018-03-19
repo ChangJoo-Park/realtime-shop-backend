@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/typeorm/typescript-express-example.git"
+    "url": "https://github.com/ChangJoo-Park/realtime-shop-backend.git"
   },
   "bugs": {
-    "url": "https://github.com/typeorm/typescript-express-example/issues"
+    "url": "https://github.com/ChangJoo-Park/realtime-shop-backend/issues"
   },
   "tags": [
     "orm",
