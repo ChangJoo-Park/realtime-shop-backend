@@ -9,3 +9,11 @@
   <%= customer.username %>
 </h2>
 <p><%= customer.email %></p>
+
+<div class="list-group">
+  <% customer.orders.forEach(o => { %>
+    <a href="/admin/orders/<%= o.id %>" class="list-group-item list-group-item-action">
+      <%= o.id %> -> <%= o.products.map(p => p.name).join(', ') %>
+    </a>
+  <% }) %>
+</div>
