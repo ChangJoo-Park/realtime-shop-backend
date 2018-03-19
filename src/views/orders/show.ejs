@@ -4,3 +4,16 @@
   </div>
 </div>
 <br>
+
+<div>
+  <h3><small>Order by</small> <%= order.customer.username %></h3>
+  <hr>
+  <h4>Products</h4>
+  <div class="list-group">
+    <% order.products.forEach(p => { %>
+      <a href="/admin/products/<%= p.id %>" class="list-group-item list-group-item-action">
+        <%= p.name %>
+      </a>
+    <% }) %>
+  </div>
+</div>
