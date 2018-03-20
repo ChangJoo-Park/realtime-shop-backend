@@ -57,7 +57,7 @@ export async function create(request: Request, response: Response) {
   product.name = name
   product.description = description
   product.published = published
-  product.categories = await Category.findByIds(getCategoryArray(categories))
+  product.categories = await Category.findByIds(categories)
   await product.save()
 
   response.redirect('/admin/products')
@@ -69,7 +69,7 @@ export async function update(request: Request, response: Response) {
   product.name = name
   product.description = description
   product.published = published === 'on' ? true : false
-  product.categories = await Category.findByIds(getCategoryArray(categories))
+  product.categories = await Category.findByIds(categories)
   await product.save()
 
   response.redirect(`/admin/products/${product.id}`)
@@ -80,14 +80,4 @@ export async function destroy(request: Request, response: Response) {
   await product.remove()
 
   response.redirect('/admin/products')
-}
-
-const getCategoryArray = (categories = []) => {
-  let categoryArray = []
-  if (typeof categories === 'string') {
-    categoryArray.push(categories)
-  } else {
-    categoryArray = categories
-  }
-  return categoryArray
 }

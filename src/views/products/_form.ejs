@@ -17,6 +17,7 @@
       minLength=2
       maxLength=20
       required
+      autofocus
       value= "<%= product.name %>"
     >
   </div>
@@ -31,7 +32,7 @@
   <!-- Checkboxes -->
   <div class="form-group">
     <label for="product-form-categories">Categories</label>
-    <select id="product-form-categories" multiple name="categories" class="form-control">
+    <select id="product-form-categories" multiple name="categories[]" class="form-control">
     <% categories.forEach(c => { %>
       <% selected = '' %>
       <% if(isUpdate) { %>

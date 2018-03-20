@@ -11,7 +11,7 @@ export class Order extends BaseEntity {
     @ManyToOne(type => Customer, customer => customer.orders)
     customer: Customer;
 
-    @ManyToMany(type => Product, order => order.lineItems, {
+    @OneToMany(type => LineItem, lineItem => lineItem.order, {
       eager: false
     })
 

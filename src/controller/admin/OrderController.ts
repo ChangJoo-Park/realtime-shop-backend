@@ -8,7 +8,7 @@ import { Order } from "../../entity/Order";
 const page_name = 'orders'
 
 export async function index(request: Request, response: Response) {
-  const orders = await Order.find({relations: ['customer', 'products']})
+  const orders = await Order.find({relations: ['customer', 'lineItems']})
   response.render('orders/index', {
     title: 'All Orders',
     page_name,
@@ -53,14 +53,15 @@ export async function edit(request: Request, response: Response) {
 }
 
 export async function create(request: Request, response: Response) {
-  const { name, description, customer, products } = request.body
-  const order = new Order()
-  order.customer = await Customer.findOneById(customer)
-  order.products = await Product.findByIds(getProductArray(products))
+  const { name, description, customer, lineItems } = request.body
+  console.log(lineItems)
+  // const order = new Order()
+  // order.customer = await Customer.findOneById(customer)
+  // order.lineItems = await Product.findByIds(getProductArray(products))
 
-  await order.save()
+  // await order.save()
 
-  response.redirect('/admin/orders')
+  // response.redirect('/admin/orders')
 }
 
 export async function update(request: Request, response: Response) {
@@ -76,14 +77,4 @@ export async function destroy(request: Request, response: Response) {
   await order.remove()
 
   response.redirect('/admin/orders')
-}
-
-const getProductArray = (products = []) => {
-  let productArray = []
-  if (typeof products === 'string') {
-    productArray.push(products)
-  } else {
-    productArray = products
-  }
-  return productArray
 }
