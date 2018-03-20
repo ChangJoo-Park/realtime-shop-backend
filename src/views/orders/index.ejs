@@ -12,7 +12,7 @@
         <tr>
           <th>ID</th>
           <th>Customer</th>
-          <th>Products</th>
+          <th>Line Items</th>
           <th>Actions</th>
         </tr>
         </thead>
@@ -22,7 +22,7 @@
               <td><%= o.id %></td>
               <td><%= o.customer.username %></td>
               <td>
-                <%= o.products.map(p => p.name).join(', ') %>
+                <%= o.customer.lineItems %>
               </td>
               <td>
                 <a href="/admin/orders/<%= o.id %>" role="button" class="btn btn-light btn-xs">Show</a>

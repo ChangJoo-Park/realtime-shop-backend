@@ -3,7 +3,6 @@ import { Order } from './Order'
 
 @Entity()
 export class Customer extends BaseEntity {
-
     @PrimaryGeneratedColumn()
     id: number;
 
