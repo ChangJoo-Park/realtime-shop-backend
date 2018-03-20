@@ -1,31 +1,85 @@
-<% style = isUpdate ? 'success' : 'primary' %>
-<% submitText = isUpdate ? 'Update' : 'Submit' %>
+<div id="order-form">
+  <% style = isUpdate ? 'success' : 'primary' %>
+  <% submitText = isUpdate ? 'Update' : 'Submit' %>
 
-<% if (isUpdate) { %>
-<form action="/admin/orders/<%= order.id %>?_method=PUT" method="post">
-<% } else { %>
-<form action="/admin/orders" method="post">
-<% } %>
-  <div class="form-group">
-    <label for="order-form-customer">Customer</label>
-    <select id="order-form-customer" name="customer" class="form-control">
-      <% customers.forEach(c => { %>
-        <option value="<%= c.id %>"><%= c.username %></option>
-      <% }) %>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="order-form-products">Line Item</label>
-    <select name="lineItems[]" class="form-control">
-      <% products.forEach(p => { %>
-        <option value="<%= p.id %>"><%= p.name %></option>
-      <% })%>
-    </select>
-  </div>
+  <% if (isUpdate) { %>
+  <form action="/admin/orders/<%= order.id %>?_method=PUT" method="post">
+  <% } else { %>
+  <form action="/admin/orders" method="post">
+  <% } %>
+    <div class="form-group">
+      <label for="order-form-customer">Customer</label>
+      <select id="order-form-customer" name="customer" class="form-control">
+        <% customers.forEach(c => { %>
+          <option value="<%= c.id %>"><%= c.username %></option>
+        <% }) %>
+      </select>
+    </div>
 
-  <input
-    type="submit"
-    class="btn btn-<%= style %>"
-    value="<%= submitText %>">
-  <a href="/admin/orders" class="btn btn-link">Back</a>
-</form>
+    <div class="order-line-items-row">
+      <label>주문할 상품</label>
+    </div>
+
+    <div class="row">
+      <div class="col-md">
+        <button class="btn btn-dark line-item-action line-item-action-plus">+</button>
+        <!-- <button class="btn btn-dark line-item-action line-item-action-minus">-</button> -->
+      </div>
+    </div>
+    <div class="row">
+      <input
+      type="submit"
+      class="btn btn-<%= style %>"
+      value="<%= submitText %>">
+      <a href="/admin/orders" class="btn btn-link">Back</a>
+    </div>
+  </form>
+</div>
+
+<template id="order-form-item-template">
+  <div class="row line-item-row">
+    <div class="col-md">
+      <div class="form-group">
+        <label for="order-form-products">상품명</label>
+        <select name="lineItems[][product]" class="form-control line-item-product">
+          <% products.forEach(p => { %>
+            <option value="<%= p.id %>"><%= p.name %></option>
+          <% })%>
+        </select>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="form-group">
+        <label for="">갯수</label>
+        <input type="number" name="lineItems[][amount]" value="1" class="form-control line-item-amount">
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+if (document.querySelector('#order-form')) {
+  document.querySelector('.line-item-action-plus').addEventListener('click', function (e) {
+    e.preventDefault()
+    var $template = document.getElementById('order-form-item-template')
+    var $select = $template.content.querySelector('.line-item-product')
+    var $input = $template.content.querySelector('.line-item-amount')
+    var $currentRows = document.querySelectorAll('.order-line-items-row .line-item-row')
+    var currentIndex = $currentRows.length
+
+    if (currentIndex > 0) {
+      $currentRows.forEach(function (row, index) {
+        var namePrefix = 'lineItems[' + index + ']'
+        row.querySelector('.line-item-product').setAttribute('name', namePrefix + '[product]')
+        row.querySelector('.line-item-amount').setAttribute('name', namePrefix + '[amount]')
+      })
+    }
+
+    var namePrefix = 'lineItems[' + currentIndex + ']'
+    $select.setAttribute('name', namePrefix + '[product]')
+    $input.setAttribute('name', namePrefix + '[amount]')
+    var $templateInnerHTML = document.importNode($template.content, true)
+    document.querySelector('.order-line-items-row').appendChild($templateInnerHTML)
+  })
+}
+</script>
