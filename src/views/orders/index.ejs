@@ -22,7 +22,8 @@
               <td><%= o.id %></td>
               <td><%= o.customer.username %></td>
               <td>
-                <%= o.customer.lineItems %>
+                <!-- FIXME: Order로 옮겨야함-->
+                <%= o.lineItems.map(i => `${i.product.name} [1] `).join(' , ') %>
               </td>
               <td>
                 <a href="/admin/orders/<%= o.id %>" role="button" class="btn btn-light btn-xs">Show</a>
